@@ -1,3 +1,11 @@
+Steps for reproducing this on your system
+=========================================
+
+Start with:
+http://www.pyimagesearch.com/2015/10/26/how-to-install-opencv-3-on-raspbian-jessie/
+
+I'm using a raspberry pi 2
+
 piui
 ==============
 

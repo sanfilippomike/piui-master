@@ -47,17 +47,16 @@ class DemoPiUi(object):
         bq7 = self.page.add_button("Breakfast", self.q7)
         bq8 = self.page.add_button("School", self.q8)
         self.title = self.page.add_textbox("Small Talk Answers", "h1")
-        b1 = self.page.add_button("HowAreYou", self.m1)
-        b2 = self.page.add_button("ImGood", self.m2)
-        b3 = self.page.add_button("ImOkay", self.m3)
-        b4 = self.page.add_button("NotGreat", self.m4)
-        b5 = self.page.add_button("AboutMe", self.m5)
-        b6 = self.page.add_button("Brothers/Sisters", self.m6)
-        b7 = self.page.add_button("ImGood", self.m7)
-        b8 = self.page.add_button("ImOkay", self.m8)
-        b9 = self.page.add_button("NotGreat", self.m9)
-        b10 = self.page.add_button("AboutMe", self.m10)
-        b11 = self.page.add_button("Brothers/Sisters", self.m11)
+        b1 = self.page.add_button("ImGood", self.a1)
+        b2 = self.page.add_button("ImOkay", self.a2)
+        b3 = self.page.add_button("NotGreat", self.a3)
+        b4 = self.page.add_button("AboutMe", self.a4)
+        b5 = self.page.add_button("Brothers/Sisters", self.a5)
+        b6 = self.page.add_button("Pets", self.a6)
+        b7 = self.page.add_button("Birthday", self.a7)
+        b8 = self.page.add_button("Grade", self.a8)
+        b9 = self.page.add_button("Breakfast", self.a9)
+        b10 = self.page.add_button("School", self.a10)
         self.title = self.page.add_textbox("Output String", "h1")
 
     def page_buttons(self):
@@ -112,29 +111,45 @@ class DemoPiUi(object):
         self.title.set_text("Up ")
         print "Up"
 
-    def m1(self):
-        self.title.set_text("How are you")
-        print "How are you"
-
-    def m2(self):
+    def a1(self):
         self.title.set_text("I'm good")
         print "I'm good"
 
-    def m3(self):
+    def a2(self):
         self.title.set_text("I'm okay")
         print "I'm okay"
 
-    def m4(self):
+    def a3(self):
         self.title.set_text("Not great. I'm having trouble figuring out some math problems I was assigned")
         print "Not great.  I'm having trouble figuring out some math problems I was assigned"
 
-    def m5(self):
-        self.title.set_text("How are you")
-        print "How are you"
+    def a4(self):
+        self.title.set_text("Well, I love reading and watching TV.  I can't do everything humans can do because I'm a robot, but I love playing wit humans like you!")
+        print "Well, I love reading and watching TV.  I can't do everything humans can do because I'm a robot, but I love playing wit humans like you!"
 
-    def m6(self):
-        self.title.set_text("I'm good")
-        print "I'm good"
+    def a5(self):
+        self.title.set_text("Robots don't really have brothers and sisters, but there are others like me out there! I like to think of them as my brothers and sisters.")
+        print "Robots don't really have brothers and sisters, but there are others like me out there! I like to think of them as my brothers and sisters."
+
+    def a6(self):
+        self.title.set_text("I wish! I think dogs are really fun.")
+        print "I wish! I think dogs are really fun."
+
+    def a7(self):
+        self.title.set_text("I was created on May 15")
+        print "I was created on May 15"
+
+    def a8(self):
+        self.title.set_text("Robots can go to school with kids from all different grades, but I'm eight!")
+        print "Robots can go to school with kids from all different grades, but I'm eight!"
+
+    def a9(self):
+        self.title.set_text("I didn't have breakfast today, but I love doughnuts!")
+        print "I didn't have breakfast today, but I love doughnuts!"
+
+    def a10(self):
+        self.title.set_text("Today, I learned about the sea.  Did you know that a shark is the only known fish that can blink with both eyes?")
+        print "Today, I learned about the sea.  Did you know that a shark is the only known fish that can blink with both eyes?"
 
     def q1(self):
         self.title.set_text("How are you")
