@@ -97,6 +97,21 @@ class DemoPiUi(object):
         con = self.ui.console(title="Console", prev_text="Back", onprevclick=self.main_menu)
         con.print_line("Hello Console!")
 
+    def page_video(self):
+    cap = cv2.VideoCapture(0)
+    while(True):
+        # Capture frame-by-frame
+        ret, frame = cap.read()
+        # Our operations on the frame come here
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # Display the resulting frame
+        cv2.imshow('frame',gray)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    # When everything done, release the capture
+    cap.release()
+    cv2.destroyAllWindows()
+
     def main_menu(self):
         self.page = self.ui.new_ui_page(title="PiUi")
         self.list = self.page.add_list()
@@ -106,6 +121,7 @@ class DemoPiUi(object):
         self.list.add_item("Images", chevron=True, onclick=self.page_images)
         self.list.add_item("Toggles", chevron=True, onclick=self.page_toggles)
         self.list.add_item("Console!", chevron=True, onclick=self.page_console)
+        self.list.add_item("Video", chevron=True, onclick=self.page_video)
         self.ui.done()
 
 
