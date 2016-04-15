@@ -62,7 +62,8 @@ class DemoPiUi(object):
         self.title = self.page.add_textbox("Output String", "h1")
 
     def page_buttons(self):
-        img = cv2.imread('../lena.jpg',0)
+        self.img = self.page.add_image("lena.jpg")
+        img = cv2.imread(self.img,0)
         cv2.imshow('image',img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
@@ -79,16 +80,9 @@ class DemoPiUi(object):
 
     def page_images(self):
         self.page = self.ui.new_ui_page(title="Images", prev_text="Back", onprevclick=self.main_menu)
-        self.img = self.page.add_image("sunset.png")
+        self.img = self.page.add_image("lena.jpg")
         self.page.add_element('br')
         button = self.page.add_button("Change The Picture", self.onpicclick)
-
-    def page_images(self):
-        self.page = self.ui.new_ui_page(title="Images", prev_text="Back", onprevclick=self.main_menu)
-        self.img = self.page.add_image("sunset.png")
-        self.page.add_element('br')
-        button = self.page.add_button("Change The Picture", self.onpicclick)
-
 
     def page_toggles(self):
         self.page = self.ui.new_ui_page(title="Toggles", prev_text="Back", onprevclick=self.main_menu)
