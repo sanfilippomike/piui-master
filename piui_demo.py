@@ -2,6 +2,8 @@ import functools
 import os
 import random
 import time
+import cv2
+import numpy as np
 from piui import PiUi
 
 
@@ -60,6 +62,10 @@ class DemoPiUi(object):
         self.title = self.page.add_textbox("Output String", "h1")
 
     def page_buttons(self):
+        img = cv2.imread('lena.jpg',0)
+        cv2.imshow('image',img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
         self.page = self.ui.new_ui_page(title="Buttons", prev_text="Back", onprevclick=self.main_menu)
         self.title = self.page.add_textbox("Buttons!", "h1")
         plus = self.page.add_button("Up Button &uarr;", self.onupclick)
@@ -76,6 +82,13 @@ class DemoPiUi(object):
         self.img = self.page.add_image("sunset.png")
         self.page.add_element('br')
         button = self.page.add_button("Change The Picture", self.onpicclick)
+
+    def page_images(self):
+        self.page = self.ui.new_ui_page(title="Images", prev_text="Back", onprevclick=self.main_menu)
+        self.img = self.page.add_image("sunset.png")
+        self.page.add_element('br')
+        button = self.page.add_button("Change The Picture", self.onpicclick)
+
 
     def page_toggles(self):
         self.page = self.ui.new_ui_page(title="Toggles", prev_text="Back", onprevclick=self.main_menu)
