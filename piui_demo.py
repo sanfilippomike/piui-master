@@ -4,6 +4,9 @@ import random
 import time
 import cv2
 import numpy as np
+from picamera.array import PiRGBArray
+from picamera import PiCamera
+import time
 from piui import PiUi
 
 
@@ -98,19 +101,31 @@ class DemoPiUi(object):
         con.print_line("Hello Console!")
 
     def page_video(self):
-        cap = cv2.VideoCapture(0)
-        while(True):
-            # Capture frame-by-frame
-            ret, frame = cap.read()
-            # Our operations on the frame come here
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            # Display the resulting frame
-            cv2.imshow('frame',gray)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                 break
-        # When everything done, release the capture
-        cap.release()
-        cv2.destroyAllWindows()
+        # initialize the camera and grab a reference to the raw camera capture
+        camera = PiCamera()
+        camera.resolution = (640, 480)
+        camera.framerate = 32
+        rawCapture = PiRGBArray(camera, size=(640, 480))
+         
+        # allow the camera to warmup
+        time.sleep(0.1)
+         
+        # capture frames from the camera
+        for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+            # grab the raw NumPy array representing the image, then initialize the timestamp
+            # and occupied/unoccupied text
+            image = frame.array
+         
+            # show the frame
+            cv2.imshow("Frame", image)
+            key = cv2.waitKey(1) & 0xFF
+         
+            # clear the stream in preparation for the next frame
+            rawCapture.truncate(0)
+         
+            # if the `q` key was pressed, break from the loop
+            if key == ord("q"):
+                break
 
     def main_menu(self):
         self.page = self.ui.new_ui_page(title="PiUi")
