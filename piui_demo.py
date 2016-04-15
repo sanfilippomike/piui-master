@@ -62,8 +62,7 @@ class DemoPiUi(object):
         self.title = self.page.add_textbox("Output String", "h1")
 
     def page_buttons(self):
-        self.img = self.page.add_image("lena.jpg")
-        img = cv2.imread(self.img,0)
+        img = cv2.imread("lena.jpg",0)
         cv2.imshow('image',img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
