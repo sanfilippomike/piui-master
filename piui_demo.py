@@ -69,6 +69,29 @@ class DemoPiUi(object):
         b10 = self.page.add_button("School", self.a10)
         self.title = self.page.add_textbox("Output String", "h1")
 
+
+    def page_introexitgeneric(self):
+        self.page = self.ui.new_ui_page(title="Intro Exit Generic", prev_text="Back", onprevclick=self.main_menu)
+
+        self.title = self.page.add_textbox("Intro", "h1")
+        inb1 = self.page.add_button("Hello", self.in1)
+        inb2 = self.page.add_button("Intro", self.in2)
+        self.title = self.page.add_textbox("Exit", "h1")
+        exb1 = self.page.add_button("Bye", self.ex1)
+        exb2 = self.page.add_button("See you", self.ex2)
+        self.title = self.page.add_textbox("Generic", "h1")
+        geb1 = self.page.add_button("Don'tKnow", self.ge1)
+        geb2 = self.page.add_button("Yes", self.ge2)
+        geb3 = self.page.add_button("No", self.ge3)
+        geb4 = self.page.add_button("Sorry", self.ge4)
+        geb5 = self.page.add_button("HowAbout", self.ge5)
+        geb6 = self.page.add_button("MeToo", self.ge6)
+        geb7 = self.page.add_button("Why?", self.ge7)
+        geb8 = self.page.add_button("Maybe", self.ge8)
+        self.title = self.page.add_textbox("Output String", "h1")
+
+
+
     def page_buttons(self):
         img = cv2.imread('imgs/lena.jpg',0)
         cv2.imshow('image',img)
@@ -256,6 +279,70 @@ class DemoPiUi(object):
     def onupclick(self):
         self.title.set_text("Up ")
         print "Up"
+
+
+        inb1 = self.page.add_button("Hello", self.in1)
+        inb2 = self.page.add_button("Intro", self.in2)
+        self.title = self.page.add_textbox("Exit", "h1")
+        exb1 = self.page.add_button("Bye", self.ex1)
+        exb2 = self.page.add_button("See you", self.ex2)
+        self.title = self.page.add_textbox("Generic", "h1")
+        geb1 = self.page.add_button("Don'tKnow", self.ge1)
+        geb2 = self.page.add_button("Yes", self.ge2)
+        geb3 = self.page.add_button("No", self.ge3)
+        geb4 = self.page.add_button("Sorry", self.ge4)
+        geb5 = self.page.add_button("HowAbout", self.ge5)
+        geb6 = self.page.add_button("MeToo", self.ge6)
+        geb7 = self.page.add_button("Why?", self.ge7)
+        geb8 = self.page.add_button("Maybe", self.ge8)
+
+    def in1(self):
+        self.title.set_text("Hi!  My name is L-E and I love to play Simon Says.  Would you like to play with me?")
+        print "Hi!  My name is L-E and I love to play Simon Says.  Would you like to play with me?"
+
+    def in2(self):
+        self.title.set_text("Ok great!  I'll be Simon!  When I say Simon Says, you do what I say.  But if I don't say Simon Says, then you shouldn't do it.  Ok?")
+        print "Ok great!  I'll be Simon!  When I say Simon Says, you do what I say.  But if I don't say Simon Says, then you shouldn't do it.  Ok?"
+
+    def ex1(self):
+        self.title.set_text("Bye addNameVar. That was fun!")
+        print "Bye addNameVar. That was fun!"
+
+    def ex2(self):
+        self.title.set_text("Bye addNameVar. That was fun!")
+        print "See you next time addNameVar."
+
+    def ge1(self):
+        self.title.set_text("I don't know")
+        print "I don't know"
+
+    def ge2(self):
+        self.title.set_text("Yes")
+        print "Yes"
+
+    def ge3(self):
+        self.title.set_text("No")
+        print "No"
+
+    def ge4(self):
+        self.title.set_text("Sorry")
+        print "Sorry"
+
+    def ge5(self):
+        self.title.set_text("How about you?")
+        print "How about you?"
+
+    def ge6(self):
+        self.title.set_text("Me too")
+        print "Me too"
+
+    def ge7(self):
+        self.title.set_text("Why")
+        print "Why"
+
+    def ge8(self):
+        self.title.set_text("Maybe")
+        print "Maybe"
 
     def fn1(self):
         self.title.set_text("Uh-Oh... I didn't say Simon Says!")
