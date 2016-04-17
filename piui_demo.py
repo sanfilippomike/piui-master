@@ -292,13 +292,6 @@ class DemoPiUi(object):
         self.title.set_text("Up ")
         print "Up"
 
-
-
-        stb1 = self.page.add_button("TellMe", self.st1)
-        stb2 = self.page.add_button("CanITell", self.st2)
-        stb3 = self.page.add_button("Another", self.st3)
-        stb4 = self.page.add_button("Story1", self.st4)
-        stb5 = self.page.add_button("Story2", self.st5)
     def st1(self):
         self.title.set_text("Why don't you tell me a story!")
         print "Why don't you tell me a story!"
