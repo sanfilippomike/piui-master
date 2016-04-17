@@ -183,7 +183,6 @@ class DemoPiUi(object):
          
             # clear the stream in preparation for the next frame
             rawCapture.truncate(0)
-         
             # if the `q` key was pressed, break from the loop
             if key == ord("q"):
                 break
@@ -256,6 +255,17 @@ class DemoPiUi(object):
         heq5 = self.page.add_button("Center", self.he5)
         self.title = self.page.add_textbox("Output Action", "h1")
 
+
+    def page_storytelling(self):
+        self.page = self.ui.new_ui_page(title="Story Telling", prev_text="Back", onprevclick=self.main_menu)
+        stb1 = self.page.add_button("TellMe", self.st1)
+        stb2 = self.page.add_button("CanITell", self.st2)
+        stb3 = self.page.add_button("Another", self.st3)
+        stb4 = self.page.add_button("Story1", self.st4)
+        stb5 = self.page.add_button("Story2", self.st5)
+        self.title = self.page.add_textbox("Output Action", "h1")
+
+
     def main_menu(self):
         self.page = self.ui.new_ui_page(title="PiUi")
         self.list = self.page.add_list()
@@ -265,6 +275,7 @@ class DemoPiUi(object):
         self.list.add_item("Simon Says", chevron=True, onclick=self.page_simonsays)
         self.list.add_item("Feedback", chevron=True, onclick=self.page_feedback)
         self.list.add_item("Intro Exit Generic", chevron=True, onclick=self.page_introexitgeneric)
+        self.list.add_item("Story Telling", chevron=True, onclick=self.page_storytelling)
         #self.list.add_item("Input", chevron=True, onclick=self.page_input)
         #self.list.add_item("Images", chevron=True, onclick=self.page_images)
         #self.list.add_item("Toggles", chevron=True, onclick=self.page_toggles)
@@ -282,20 +293,31 @@ class DemoPiUi(object):
         print "Up"
 
 
-        inb1 = self.page.add_button("Hello", self.in1)
-        inb2 = self.page.add_button("Intro", self.in2)
-        self.title = self.page.add_textbox("Exit", "h1")
-        exb1 = self.page.add_button("Bye", self.ex1)
-        exb2 = self.page.add_button("See you", self.ex2)
-        self.title = self.page.add_textbox("Generic", "h1")
-        geb1 = self.page.add_button("Don'tKnow", self.ge1)
-        geb2 = self.page.add_button("Yes", self.ge2)
-        geb3 = self.page.add_button("No", self.ge3)
-        geb4 = self.page.add_button("Sorry", self.ge4)
-        geb5 = self.page.add_button("HowAbout", self.ge5)
-        geb6 = self.page.add_button("MeToo", self.ge6)
-        geb7 = self.page.add_button("Why?", self.ge7)
-        geb8 = self.page.add_button("Maybe", self.ge8)
+
+        stb1 = self.page.add_button("TellMe", self.st1)
+        stb2 = self.page.add_button("CanITell", self.st2)
+        stb3 = self.page.add_button("Another", self.st3)
+        stb4 = self.page.add_button("Story1", self.st4)
+        stb5 = self.page.add_button("Story2", self.st5)
+    def st1(self):
+        self.title.set_text("Why don't you tell me a story!")
+        print "Why don't you tell me a story!"
+
+    def st2(self):
+        self.title.set_text("Do you wanna hear a story?")
+        print "Do you wanna hear a story?"
+
+    def st3(self):
+        self.title.set_text("Do you want to hear another story?")
+        print "Do you want to hear another story?"
+
+    def st4(self):
+        self.title.set_text("One time, I was at a pool party.  It was my friend Jimmy's birthday, and he decided we should play a game. He dropped these jewels at the bottom of the pool, and you had to see how many you could collect in thirty seconds. Most people got around five.  But my friend Andy?  He was underwater for so long, we weren't sure if something had happened! We were about to send someone in to look for him, when all of a sudden, he popped out of the pool.  He said he saw something sparkling at the bottom and thought it was a jewel, but it was covered under some dirt at the bottom of the pool, so he had to scrape it out.  And guess what?  He found a necklace Jimmy's sister dropped in the pool a long time ago!  We were all looking for Jewels, but, really, it was Andy who found the real treasure!")
+        print "One time, I was at a pool party.  It was my friend Jimmy's birthday, and he decided we should play a game. He dropped these jewels at the bottom of the pool, and you had to see how many you could collect in thirty seconds. Most people got around five.  But my friend Andy?  He was underwater for so long, we weren't sure if something had happened! We were about to send someone in to look for him, when all of a sudden, he popped out of the pool.  He said he saw something sparkling at the bottom and thought it was a jewel, but it was covered under some dirt at the bottom of the pool, so he had to scrape it out.  And guess what?  He found a necklace Jimmy's sister dropped in the pool a long time ago!  We were all looking for Jewels, but, really, it was Andy who found the real treasure!"
+
+    def st5(self):
+        self.title.set_text("Once, I had a playdate at my friend Alex's house and we really wanted to bake something. We both liked cookies and pizza, so we thought it would be an awesome idea to bake a cookie pizza! I used chocolate chips, mini oreos, marshmallows, and peanut butter chips as my toppings. Alex made a crazy pizza with gummy worms, M and M's, and bacon. Those were the weirdest cookie toppings I had ever seen. We put our cookie pizzas in the oven, and once they were done, we were so hungry, we ate 4 slices! I tried some of Alex's cookie pizza, and it was actually pretty good. Maybe I'll try making a crazy cookie pizza next time. That was one of the best playdates I've ever had.")
+        print "Once, I had a playdate at my friend Alex's house and we really wanted to bake something. We both liked cookies and pizza, so we thought it would be an awesome idea to bake a cookie pizza! I used chocolate chips, mini oreos, marshmallows, and peanut butter chips as my toppings. Alex made a crazy pizza with gummy worms, M and M's, and bacon. Those were the weirdest cookie toppings I had ever seen. We put our cookie pizzas in the oven, and once they were done, we were so hungry, we ate 4 slices! I tried some of Alex's cookie pizza, and it was actually pretty good. Maybe I'll try making a crazy cookie pizza next time. That was one of the best playdates I've ever had."
 
     def in1(self):
         self.title.set_text("Hi!  My name is L-E and I love to play Simon Says.  Would you like to play with me?")
