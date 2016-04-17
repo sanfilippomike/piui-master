@@ -264,6 +264,7 @@ class DemoPiUi(object):
         self.list.add_item("Head Eyes", chevron=True, onclick=self.page_headeyes)
         self.list.add_item("Simon Says", chevron=True, onclick=self.page_simonsays)
         self.list.add_item("Feedback", chevron=True, onclick=self.page_feedback)
+        self.list.add_item("Intro Exit Generic", chevron=True, onclick=self.page_introexitgeneric)
         #self.list.add_item("Input", chevron=True, onclick=self.page_input)
         #self.list.add_item("Images", chevron=True, onclick=self.page_images)
         #self.list.add_item("Toggles", chevron=True, onclick=self.page_toggles)
