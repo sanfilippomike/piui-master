@@ -8,6 +8,11 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
 from piui import PiUi
+from sklearn.decomposition import RandomizedPCA
+import glob
+import math
+import os.path
+import string
 
 face_cascade = cv2.CascadeClassifier('/home/pi/opencv-3.1.0/data/haarcascades/haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('/home/pi/opencv-3.1.0/data/haarcascades/haarcascade_eye.xml')
@@ -100,13 +105,26 @@ class DemoPiUi(object):
         con = self.ui.console(title="Console", prev_text="Back", onprevclick=self.main_menu)
         con.print_line("Hello Console!")
 
+
+    #function to get ID from filename
+    def ID_from_filename(filename):
+        part = string.split(filename, '/')
+        return part[1].replace("s", "")
+     
+    #function to convert image to right format
+    def prepare_image(filename):
+        img_color = cv2.imread(filename)
+        img_gray = cv2.cvtColor(img_color, cv2.cv.CV_RGB2GRAY)
+        img_gray = cv2.equalizeHist(img_gray)
+        return img_gray.flat
+
     def page_video(self):
         self.page = self.ui.new_ui_page(title="Video", prev_text="Back", onprevclick=self.main_menu)
         # initialize the camera and grab a reference to the raw camera capture
         camera = PiCamera()
-        camera.resolution = (640, 480)
-        camera.framerate = 32
-        rawCapture = PiRGBArray(camera, size=(640, 480))
+        camera.resolution = (320, 240)
+        camera.framerate = 5
+        rawCapture = PiRGBArray(camera, size=(320, 240))
          
         # allow the camera to warmup
         time.sleep(0.1)
@@ -127,8 +145,17 @@ class DemoPiUi(object):
                 eyes = eye_cascade.detectMultiScale(roi_gray)
                 for (ex,ey,ew,eh) in eyes:
                     cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
-     
+                    test_val = ex 
             cv2.imshow("Frame", image)
+
+
+            count = 0
+            if (count < 10 and ex != null):
+                resized_image = cv2.resize(image, (92, 112)) 
+                cv2.imwrite("face-" + str(count) + ".jpg", resized_image)
+                #take photos here
+                
+
             key = cv2.waitKey(1) & 0xFF
          
             # clear the stream in preparation for the next frame
@@ -209,14 +236,14 @@ class DemoPiUi(object):
     def main_menu(self):
         self.page = self.ui.new_ui_page(title="PiUi")
         self.list = self.page.add_list()
-        self.list.add_item("Buttons", chevron=True, onclick=self.page_buttons)
+        #self.list.add_item("Buttons", chevron=True, onclick=self.page_buttons)
         self.list.add_item("Small Talk", chevron=True, onclick=self.page_smalltalk)
         self.list.add_item("Head Eyes", chevron=True, onclick=self.page_headeyes)
         self.list.add_item("Simon Says", chevron=True, onclick=self.page_simonsays)
         self.list.add_item("Feedback", chevron=True, onclick=self.page_feedback)
-        self.list.add_item("Input", chevron=True, onclick=self.page_input)
-        self.list.add_item("Images", chevron=True, onclick=self.page_images)
-        self.list.add_item("Toggles", chevron=True, onclick=self.page_toggles)
+        #self.list.add_item("Input", chevron=True, onclick=self.page_input)
+        #self.list.add_item("Images", chevron=True, onclick=self.page_images)
+        #self.list.add_item("Toggles", chevron=True, onclick=self.page_toggles)
         self.list.add_item("Console!", chevron=True, onclick=self.page_console)
         self.list.add_item("Video", chevron=True, onclick=self.page_video)
         self.ui.done()
