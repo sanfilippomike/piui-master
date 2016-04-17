@@ -101,6 +101,7 @@ class DemoPiUi(object):
         con.print_line("Hello Console!")
 
     def page_video(self):
+        self.page = self.ui.new_ui_page(title="Video", prev_text="Back", onprevclick=self.main_menu)
         # initialize the camera and grab a reference to the raw camera capture
         camera = PiCamera()
         camera.resolution = (640, 480)
@@ -118,6 +119,8 @@ class DemoPiUi(object):
          
             # show the frame
             cv2.imshow("Frame", image)
+            #see if we can show on the UI? 
+            self.img = self.page.add_image(image)
             key = cv2.waitKey(1) & 0xFF
          
             # clear the stream in preparation for the next frame
@@ -127,11 +130,82 @@ class DemoPiUi(object):
             if key == ord("q"):
                 break
 
+    # positive feedback, uhoh i didn't say
+    #intro, exit generic responses
+
+
+    def page_simonsays(self):
+        self.page = self.ui.new_ui_page(title="Simon Says", prev_text="Back", onprevclick=self.main_menu)
+        self.title = self.page.add_textbox("Simon Says", "h1")
+        ssq1 = self.page.add_button("Hands/head", self.ss1)
+        ssq2 = self.page.add_button("Touch Nose", self.ss2)
+        ssq3 = self.page.add_button("Spin", self.ss3)
+        ssq4 = self.page.add_button("Hands/hip", self.ss4)
+        ssq5 = self.page.add_button("Touch/knees", self.ss5)
+        ssq6 = self.page.add_button("Jump", self.ss6)
+        ssq7 = self.page.add_button("Hands/high", self.ss7)
+        ssq8 = self.page.add_button("Touch/toes", self.ss8)
+        ssq9 = self.page.add_button("Rub/tum", self.ss9)
+        ssq10 = self.page.add_button("Clap", self.ss10)
+        ssq11 = self.page.add_button("Run", self.ss11)
+        ssq12 = self.page.add_button("Stomp", self.ss12)
+        self.title = self.page.add_textbox("Simon Didn't Say", "h1")
+        sdsq1 = self.page.add_button("Hands/head", self.sds1)
+        sdsq2 = self.page.add_button("Touch Nose", self.sds2)
+        sdsq3 = self.page.add_button("Spin", self.sds3)
+        sdsq4 = self.page.add_button("Hands/hip", self.sds4)
+        sdsq5 = self.page.add_button("Touch/knees", self.sds5)
+        sdsq6 = self.page.add_button("Jump", self.sds6)
+        sdsq7 = self.page.add_button("Hands/high", self.sds7)
+        sdsq8 = self.page.add_button("Touch/toes", self.sds8)
+        sdsq9 = self.page.add_button("Rub/tum", self.sds9)
+        sdsq10 = self.page.add_button("Clap", self.sds10)
+        sdsq11 = self.page.add_button("Run", self.sds11)
+        sdsq12 = self.page.add_button("Stomp", self.sds12)
+        self.title = self.page.add_textbox("Output String", "h1")
+
+    def page_feedback(self):
+        self.page = self.ui.new_ui_page(title="Feedback", prev_text="Back", onprevclick=self.main_menu)
+        self.title = self.page.add_textbox("Uh-oh...I didn't say", "h1")
+
+        fnb1 = self.page.add_button("Uh-oh", self.fn1)
+        fnb2 = self.page.add_button("Sorry", self.fn2)
+        fnb3 = self.page.add_button("Too bad", self.fn3)
+        fnb4 = self.page.add_button("Got you!", self.fn4)
+        fnb5 = self.page.add_button("No, no", self.fn5)
+        fnb6 = self.page.add_button("I saw you!", self.fn6)
+        fnb7 = self.page.add_button("Didn't say", self.fn7)
+        fnb8 = self.page.add_button("Oh no", self.fn8)
+
+        self.title = self.page.add_textbox("Positive Feedback", "h1")
+        fpb1 = self.page.add_button("Way to go!", self.fp1)
+        fpb2 = self.page.add_button("Awesome", self.fp2)
+        fpb3 = self.page.add_button("You did it!", self.fp3)
+        fpb4 = self.page.add_button("Excellent!", self.fp4)
+        fpb5 = self.page.add_button("Smart!", self.fp5)
+        fpb6 = self.page.add_button("Terrfic!", self.fp6)
+        fpb7 = self.page.add_button("The best!", self.fp7)
+        fpb8 = self.page.add_button("Great!", self.fp8)
+
+        self.title = self.page.add_textbox("Output String", "h1")
+
+    def page_headeyes(self):
+        self.page = self.ui.new_ui_page(title="Head Eyes", prev_text="Back", onprevclick=self.main_menu)
+        heq1 = self.page.add_button("Blink", self.he1)
+        heq2 = self.page.add_button("Wink", self.he2)
+        heq3 = self.page.add_button("Head Right", self.he3)
+        heq4 = self.page.add_button("Head Left", self.he4)
+        heq5 = self.page.add_button("Center", self.he5)
+        self.title = self.page.add_textbox("Output Action", "h1")
+
     def main_menu(self):
         self.page = self.ui.new_ui_page(title="PiUi")
         self.list = self.page.add_list()
         self.list.add_item("Buttons", chevron=True, onclick=self.page_buttons)
         self.list.add_item("Small Talk", chevron=True, onclick=self.page_smalltalk)
+        self.list.add_item("Head Eyes", chevron=True, onclick=self.page_headeyes)
+        self.list.add_item("Simon Says", chevron=True, onclick=self.page_simonsays)
+        self.list.add_item("Feedback", chevron=True, onclick=self.page_feedback)
         self.list.add_item("Input", chevron=True, onclick=self.page_input)
         self.list.add_item("Images", chevron=True, onclick=self.page_images)
         self.list.add_item("Toggles", chevron=True, onclick=self.page_toggles)
@@ -147,6 +221,188 @@ class DemoPiUi(object):
     def onupclick(self):
         self.title.set_text("Up ")
         print "Up"
+
+    def fn1(self):
+        self.title.set_text("Uh-Oh... I didn't say Simon Says!")
+        print "Uh-Oh... I didn't say Simon Says!"
+
+    def fn2(self):
+        self.title.set_text("I'm sorry but I didn't say Simon Says!... make sure you listen closely!")
+        print "I'm sorry but I didn't say Simon Says!... make sure you listen closely!"
+
+    def fn3(self):
+        self.title.set_text("Oh no!... you moved but I never said Simon Says!  Ok, here we go again...")
+        print "Oh no!... you moved but I never said Simon Says!  Ok, here we go again..."
+
+    def fn4(self):
+        self.title.set_text("I got you!  I didn't say Simon Says this time...  this is fun!  Let's keep going!")
+        print "I got you!  I didn't say Simon Says this time...  this is fun!  Let's keep going!"
+
+    def fn5(self):
+        self.title.set_text("No-No-No, I didn't say it!  That's ok though, you are doing great!  Let's play again!")
+        print "No-No-No, I didn't say it!  That's ok though, you are doing great!  Let's play again!"
+
+    def fn6(self):
+        self.title.set_text("HA-ha-ha! I saw you! You moved but I didn't say Simon Says!, This is so much fun! Let's play again!")
+        print "HA-ha-ha! I saw you! You moved but I didn't say Simon Says!, This is so much fun! Let's play again!"
+        
+    def fn7(self):
+        self.title.set_text("OOPS! I think you moved but I didn't say Simon Says! Ok, let's keep going!")
+        print "OOPS! I think you moved but I didn't say Simon Says! Ok, let's keep going!"
+
+    def fn8(self):
+        self.title.set_text("Oh-oh-oh! Too bad, so sad. I got you!! Next time, wait until I say Simon Says before you move!")
+        print "Oh-oh-oh! Too bad, so sad. I got you!! Next time, wait until I say Simon Says before you move!"
+
+    def fp1(self):
+        self.title.set_text("Way to go! That was perfect! Let's play again!")
+        print "Way to go! That was perfect! Let's play again!"
+
+    def fp2(self):
+        self.title.set_text("You are awesome! Great listening! Let's keep going!")
+        print "You are awesome! Great listening! Let's keep going!"
+
+    def fp3(self):
+        self.title.set_text("You did it! Fabulous! Should we keep playing?")
+        print "You did it! Fabulous! Should we keep playing?"
+
+    def fp4(self):
+        self.title.set_text("Excellent! You are listening so well and did it perfectly! Let's keep playing!")
+        print "Excellent! You are listening so well and did it perfectly! Let's keep playing!"
+
+    def fp5(self):
+        self.title.set_text("You are very smart! I couldn't trick you once! Let's play again!")
+        print "You are very smart! I couldn't trick you once! Let's play again!"
+
+    def fp6(self):
+        self.title.set_text("That was terrific! Another amazing performance! Do you want to keep playing with me?")
+        print "That was terrific! Another amazing performance! Do you want to keep playing with me?"
+        
+    def fp7(self):
+        self.title.set_text("You are the best! Incredible! Let's do it again!")
+        print "You are the best! Incredible! Let's do it again!"
+
+    def fp8(self):
+        self.title.set_text("Great! You are truly awesome. Here we go again! Are you ready?")
+        print "Great! You are truly awesome. Here we go again! Are you ready?"
+
+    def ss1(self):
+        self.title.set_text("Simon says, put your hands on your head!")
+        print "Simon says, put your hands on your head!"
+
+    def ss2(self):
+        self.title.set_text("Simon says, Touch your nose!")
+        print "Simon says, Touch your nose!"
+
+    def ss3(self):
+        self.title.set_text("Simon says, turn all the way around!")
+        print "Simon says, turn all the way around!"
+
+    def ss4(self):
+        self.title.set_text("Simon says, place your hands on your hips!")
+        print "Simon says, place your hands on your hips!"
+
+    def ss5(self):
+        self.title.set_text("Now Simon says, Touch your knees!")
+        print "Now Simon says, Touch your knees!"
+
+    def ss6(self):
+        self.title.set_text("Simon says, jump three times!")
+        print "Simon says, jump three times!"
+
+    def ss7(self):
+        self.title.set_text("Ok, Simon says, Hold your hands up high!")
+        print "Ok, Simon says, Hold your hands up high!"
+
+    def ss8(self):
+        self.title.set_text("Simon says, touch your toes!")
+        print "Simon says, touch your toes!"
+
+    def ss9(self):
+        self.title.set_text("Simon says, rub your tummy!")
+        print "Simon says, rub your tummy!"
+
+    def ss10(self):
+        self.title.set_text("Simon says, Clap your hands!")
+        print "Simon says, Clap your hands!"
+
+    def ss11(self):
+        self.title.set_text("And Simon says, run in place!")
+        print "And Simon says, run in place!"
+
+    def ss12(self):
+        self.title.set_text("Simon says, stomp your feet!")
+        print "Simon says, stomp your feet!"
+
+    #simon didn't say...
+    def sds1(self):
+        self.title.set_text("Put your hands on your head!")
+        print "Put your hands on your head!"
+
+    def sds2(self):
+        self.title.set_text("Touch your nose!")
+        print "Touch your nose!"
+
+    def sds3(self):
+        self.title.set_text("Turn all the way around!")
+        print "Turn all the way around!"
+
+    def sds4(self):
+        self.title.set_text("Put your hands on your hips!")
+        print "Put your hands on your hips!"
+
+    def sds5(self):
+        self.title.set_text("Touch your knees!")
+        print "Touch your knees!"
+
+    def sds6(self):
+        self.title.set_text("Now, jump three times!")
+        print "Now, jump three times!"
+
+    def sds7(self):
+        self.title.set_text("Hold your hands up high!")
+        print "Hold your hands up high!"
+
+    def sds8(self):
+        self.title.set_text("Now, touch your toes!")
+        print "Now, touch your toes!"
+
+    def sds9(self):
+        self.title.set_text("Everyone rub your tummy!")
+        print "Everyone rub your tummy!"
+
+    def sds10(self):
+        self.title.set_text("Clap your hands!")
+        print "Clap your hands!"
+
+    def sds11(self):
+        self.title.set_text("Ok, run in place!")
+        print "Ok, run in place!"
+
+    def sds12(self):
+        self.title.set_text("Let's stomp your feet!")
+        print "Let's stomp your feet!"
+
+
+    def he1(self):
+        self.title.set_text("Blink")
+        print "Blink"
+        
+    def he2(self):
+        self.title.set_text("Wink")
+        print "Wink"
+
+    def he3(self):
+        self.title.set_text("Head Right")
+        print "Head Right"
+
+    def he4(self):
+        self.title.set_text("Head Left")
+        print "Head Left"
+
+    def he5(self):
+        self.title.set_text("Center")
+        print "Center"
 
     def a1(self):
         self.title.set_text("I'm good")
