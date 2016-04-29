@@ -8,7 +8,7 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
 from piui import PiUi
-from sklearn.decomposition import RandomizedPCA
+#from sklearn.decomposition import RandomizedPCA
 import glob
 import math
 import os.path
